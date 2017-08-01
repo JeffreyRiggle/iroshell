@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import ilusr.iroshell.dockarea.overlay.*?>
+
+<!-- TODO: Create css file for rect color and other things. -->
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml/1">
+	<BorderPane
+		AnchorPane.topAnchor="0.0" 
+		AnchorPane.leftAnchor="0.0" 
+		AnchorPane.rightAnchor="0.0"
+		AnchorPane.bottomAnchor="0.0"
+		fx:id="dockBorder">
+		<top>
+			<DockArrow fx:id="topArrow"/>
+		</top>
+		<center>
+			<DockArrow fx:id="centerArrow"/>
+		</center>
+		<bottom>
+			<DockArrow fx:id="bottomArrow"/>
+		</bottom>
+		<left>
+			<DockArrow fx:id="leftArrow"/>
+		</left>
+		<right>
+			<DockArrow fx:id="rightArrow"/>
+		</right>
+	</BorderPane>
+</fx:root>

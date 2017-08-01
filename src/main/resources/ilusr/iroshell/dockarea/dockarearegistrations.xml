@@ -1,0 +1,13 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="DockPanelModel" class="ilusr.iroshell.dockarea.DockPanelModel" scope="prototype">
+		      <constructor-arg ref="IStyleContainerService"/>
+	</bean>
+	<bean id="DockAreaModel" class="ilusr.iroshell.dockarea.DockAreaModel" scope="prototype"/>
+	
+	<bean id="SelectionManager" class="ilusr.iroshell.dockarea.SelectionManager" scope="singleton" />
+	<bean id="InstanceSelectionManager" class="ilusr.iroshell.dockarea.SelectionManager" scope="prototype" />
+</beans>

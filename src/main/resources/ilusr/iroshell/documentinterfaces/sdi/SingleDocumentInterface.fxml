@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import ilusr.iroshell.dockarea.*?>
+<?import ilusr.iroshell.documentinterfaces.sdi.*?>
+<?import javafx.scene.layout.StackPane?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml">
+	<SplitPane
+		fx:id="rootPane"
+		orientation="HORIZONTAL"
+		AnchorPane.topAnchor="0.0" 
+		AnchorPane.leftAnchor="0.0" 
+		AnchorPane.rightAnchor="0.0"
+		AnchorPane.bottomAnchor="0.0">
+		<!-- TODO is there a better component for these -->
+		<AnchorPane fx:id="selector" />
+		<AnchorPane fx:id="documentArea" />
+	</SplitPane>
+</fx:root>

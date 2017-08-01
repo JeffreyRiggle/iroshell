@@ -1,0 +1,5 @@
+#previewPane {
+	-fx-fill: transparent;
+	-fx-stroke: black;
+	-fx-stroke-width: 2;
+}

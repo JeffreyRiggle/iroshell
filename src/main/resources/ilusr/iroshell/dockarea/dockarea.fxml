@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import ilusr.iroshell.dockarea.*?>
+<?import javafx.scene.layout.StackPane?>
+
+<fx:root type="javafx.scene.layout.AnchorPane" xmlns:fx="http://javafx.com/fxml">
+	<StackPane
+		AnchorPane.topAnchor="0.0" 
+		AnchorPane.leftAnchor="0.0" 
+		AnchorPane.rightAnchor="0.0"
+		AnchorPane.bottomAnchor="0.0"
+		fx:id="stackPane">
+		<DockPanel fx:id="dockPanel"/>
+	</StackPane>
+</fx:root>

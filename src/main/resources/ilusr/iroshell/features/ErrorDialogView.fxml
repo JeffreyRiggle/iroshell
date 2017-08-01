@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+
+<fx:root 
+	type="javafx.scene.layout.GridPane" 
+	xmlns:fx="http://javafx.com/fxml"
+	vgap="10"
+	fx:id="root">
+	<padding>
+         <Insets bottom="0.0" left="25.0" right ="10.0" top="20.0"/>
+     </padding>
+	<columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" prefWidth="325"/>
+    </columnConstraints>
+    <rowConstraints>
+    	<RowConstraints prefHeight="50.0" vgrow="NEVER" />
+    	<RowConstraints prefHeight="150.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <HBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="25">
+    	<ImageView fx:id="errorImage" />
+    	<Label text="An unhandled error occured in this application."/>
+    </HBox>
+    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="1" vgap="15" fx:id="infoPane">
+    	<columnConstraints>
+        	<ColumnConstraints hgrow="ALWAYS" prefWidth="325"/>
+    	</columnConstraints>
+    	<rowConstraints>
+    		<RowConstraints prefHeight="25.0" vgrow="NEVER" />
+    		<RowConstraints prefHeight="75.0" vgrow="SOMETIMES" />
+    		<RowConstraints prefHeight="25.0" vgrow="NEVER" />
+    	</rowConstraints>
+    	<Label fx:id="info" text="More info" prefWidth="1000" GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="center"/>
+    	<TextArea fx:id="infoArea" editable="false" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    	<BorderPane GridPane.columnIndex="0" GridPane.rowIndex="2">
+    		<left>
+    			<Button text="Continue" onAction="#continueClicked" prefWidth="75"/>
+    		</left>
+    		<right>
+    			<Button text="Exit" onAction="#exitClicked" prefWidth="75" />
+    		</right>
+    	</BorderPane>
+    </GridPane>
+    <stylesheets>
+    	<URL value="@defaulterror.css" />
+    </stylesheets>
+</fx:root>

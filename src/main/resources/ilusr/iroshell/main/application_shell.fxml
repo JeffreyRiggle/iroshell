@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import ilusr.iroshell.menus.*?>
+<?import ilusr.iroshell.dockarea.*?>
+<?import ilusr.iroshell.statusbar.*?>
+<?import ilusr.iroshell.documentinterfaces.mdi.*?>
+<?import ilusr.iroshell.documentinterfaces.mdi.MultipleDocumentInterface?>
+<?import ilusr.iroshell.menus.GCMenuBar?>
+<?import ilusr.iroshell.toolbar.ToolingArea?>
+
+<fx:root 
+	type="javafx.scene.layout.GridPane" 
+	xmlns:fx="http://javafx.com/fxml"
+	styleClass="root"
+	fx:id="root">
+	<columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" prefWidth="300"/>
+    </columnConstraints>
+    <rowConstraints>
+    	<RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="NEVER" />
+    	<RowConstraints minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />    	
+    </rowConstraints>
+	<GCMenuBar GridPane.columnIndex="0" GridPane.rowIndex="0" />
+	<BorderPane GridPane.columnIndex="0" GridPane.rowIndex="1" fx:id="borderPane">
+		<top>
+			<ToolingArea fx:id="topToolingArea"/>
+		</top>
+		<left>
+			<ToolingArea fx:id="leftToolingArea"/>
+		</left>
+		<center>
+			<AnchorPane>
+				<StackPane 
+						AnchorPane.topAnchor="0.0" 
+						AnchorPane.leftAnchor="0.0" 
+						AnchorPane.rightAnchor="0.0"
+						AnchorPane.bottomAnchor="0.0"
+						fx:id="stackPane"/>
+			</AnchorPane>
+		</center>
+		<right>
+			<ToolingArea fx:id="rightToolingArea"/>
+		</right>
+		<bottom>
+			<GridPane fx:id="footer">
+				<columnConstraints>
+        			<ColumnConstraints hgrow="ALWAYS" prefWidth="300"/>
+    			</columnConstraints>
+    			<rowConstraints>
+    				<RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    				<RowConstraints minHeight="25.0" prefHeight="30.0" vgrow="NEVER" />    	
+    			</rowConstraints>
+				<ToolingArea fx:id="bottomToolingArea" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    			<StatusBar fx:id="statusBar" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+			</GridPane>
+		</bottom>
+	</BorderPane>
+    <stylesheets>
+    	<URL value="@mainshell.css" />
+    </stylesheets>	
+</fx:root>

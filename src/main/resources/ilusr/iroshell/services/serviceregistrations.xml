@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="IStyleContainerService" 
+		  class="ilusr.iroshell.services.StyleContainerService" 
+		  scope="singleton"/>
+		  
+	<bean id="LayoutService"
+		class="ilusr.iroshell.services.LayoutService"
+		scope="singleton">
+		<constructor-arg ref="SelectionManager" />
+		<constructor-arg ref="IStyleContainerService" />
+		<constructor-arg ref="SDIProvider" />
+		<constructor-arg ref="MDIProvider" />
+	</bean>
+	
+	<bean id="ToolBarService"
+		class="ilusr.iroshell.services.ToolBarService"
+		scope="singleton">
+		<constructor-arg ref="InternalURLProvider" />
+		<constructor-arg ref="IStyleContainerService" />
+	</bean>
+	
+	<bean id="PersistableToolBarService"
+		class="ilusr.iroshell.services.PersistableToolBarService"
+		scope="singleton">
+		<constructor-arg ref="ToolBarService" />
+	</bean>
+	
+	<bean id="IApplicationClosingManager"
+		class="ilusr.iroshell.services.ApplicationClosingManager"
+		scope="singleton" />
+	
+	<bean id="INotificationService"
+		class="ilusr.iroshell.services.NotificationService"
+		scope="singleton" />
+</beans>

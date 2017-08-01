@@ -1,0 +1,9 @@
+.testClass {
+	width: 80px;
+}
+
+#idTest {
+	height: 35px;
+}
+
+-fx-background-color: green;
