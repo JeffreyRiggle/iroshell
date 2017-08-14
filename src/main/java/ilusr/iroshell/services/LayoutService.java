@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
@@ -108,14 +107,14 @@ public class LayoutService implements ILayoutService {
 			this.manager = new XmlManager(new String());
 			configurationManager = new XmlConfigurationManager(this.manager, new ArrayList<PersistXml>());
 		} catch (Exception e) {
-			LogRunner.logger().log(Level.INFO, String.format("%s", e));
+			LogRunner.logger().severe(e);
 		}
 	}
 	
 	@Override
 	public void registerBluePrint(String bluePrintName, ITabContentBluePrint bluePrint) {
 		synchronized(bluePrintLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Registering blue print: %s", bluePrintName));
+			LogRunner.logger().info(String.format("Registering blue print: %s", bluePrintName));
 			bluePrintMap.put(bluePrintName, bluePrint);
 		}
 	}
@@ -123,7 +122,7 @@ public class LayoutService implements ILayoutService {
 	@Override
 	public void unregisterBluePrint(String bluePrintName) {
 		synchronized(bluePrintLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Un-registering blue print: %s", bluePrintName));
+			LogRunner.logger().info(String.format("Un-registering blue print: %s", bluePrintName));
 			bluePrintMap.remove(bluePrintName);
 		}
 	}
@@ -139,7 +138,7 @@ public class LayoutService implements ILayoutService {
 			throw new IllegalStateException("Must be in SDI for this operation");
 		}
 		
-		LogRunner.logger().log(Level.INFO, "Adding selector pane to SDI");
+		LogRunner.logger().info("Adding selector pane to SDI");
 		sdi.setSelectorPane(node);
 	}
 	
@@ -163,7 +162,7 @@ public class LayoutService implements ILayoutService {
 			throw new IllegalArgumentException(String.format("Invalid BluePrintName: %s", bluePrintName));
 		}
 		
-		LogRunner.logger().log(Level.INFO, String.format("Creating tab from blue print: %s", bluePrintName));
+		LogRunner.logger().info(String.format("Creating tab from blue print: %s", bluePrintName));
 		
 		ITabContent tab;
 		
@@ -192,7 +191,7 @@ public class LayoutService implements ILayoutService {
 		
 		DockTab dTab = convertToDockTab(tab);
 		
-		LogRunner.logger().log(Level.INFO, String.format("Adding tab: %s", dTab.idProperty().get()));
+		LogRunner.logger().info(String.format("Adding tab: %s", dTab.idProperty().get()));
 		model.tabs().add(dTab);
 		dTab.select();
 	}
@@ -264,7 +263,7 @@ public class LayoutService implements ILayoutService {
 	}
 	
 	private void removeAllButThis(String id, DockAreaModel model) {
-		LogRunner.logger().log(Level.INFO, String.format("Removing all tabs except: %s", id));
+		LogRunner.logger().info(String.format("Removing all tabs except: %s", id));
 		
 		// Clone the list to avoid concurrent modifications.
 		final ObservableList<DockTab> tabs = FXCollections.observableArrayList(model.getDockPanel().tabs());
@@ -321,7 +320,7 @@ public class LayoutService implements ILayoutService {
 	private boolean tryRemoveTab(DockPanelModel model, String id) {
 		for (DockTab tab : model.tabs()) {
 			if (tab.idProperty().get().equals(id)) {
-				LogRunner.logger().log(Level.INFO, String.format("Removing tab: %s", id));
+				LogRunner.logger().info(String.format("Removing tab: %s", id));
 				model.tabs().remove(tab);
 				return true;
 			}
@@ -331,7 +330,7 @@ public class LayoutService implements ILayoutService {
 	}
 	
 	private void removeAllTabsImpl(DockAreaModel model) {
-		LogRunner.logger().log(Level.INFO, "Removing all tabs");
+		LogRunner.logger().info("Removing all tabs");
 		
 		// Clone the list to avoid concurrent modifications.
 		final ObservableList<DockTab> tabs = FXCollections.observableArrayList(model.getDockPanel().tabs());
@@ -386,7 +385,7 @@ public class LayoutService implements ILayoutService {
 	@Override
 	public void savePersistence() {
 		try {
-			LogRunner.logger().log(Level.INFO, "Saving Persistence");
+			LogRunner.logger().info("Saving Persistence");
 			configurationManager.clearConfigurationObjects();
 			XmlConfigurationObject persistence;
 			
@@ -473,7 +472,7 @@ public class LayoutService implements ILayoutService {
 			throw new IllegalStateException("Must be in MDI for this operation");
 		}
 		
-		LogRunner.logger().log(Level.INFO, "Loading MDI Persistence");
+		LogRunner.logger().info("Loading MDI Persistence");
 		DockAreaModel dockModel = buildDockAreaModel(new DockAreaModel(), persistence.getDockArea());
 		mdi.getDock().setModel(dockModel);
 	}
@@ -541,7 +540,7 @@ public class LayoutService implements ILayoutService {
 			throw new IllegalStateException("Must be in SDI for this operation.");
 		}
 		
-		LogRunner.logger().log(Level.INFO, "Loading SDI Persistence");
+		LogRunner.logger().info("Loading SDI Persistence");
 		sdi.getSplitter().setDividerPositions(persistence.getSelectorPosition());
 		sdi.getModel().changeView(persistence.getSelectedItem());
 	}

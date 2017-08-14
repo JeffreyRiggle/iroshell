@@ -1,7 +1,5 @@
 package ilusr.iroshell.services;
 
-import java.util.logging.Level;
-
 import ilusr.core.url.InternalURLProvider;
 import ilusr.iroshell.core.DockPosition;
 import ilusr.iroshell.core.LocationParameters;
@@ -46,7 +44,7 @@ public class ToolBarService implements IToolBarService {
 	
 	@Override
 	public void addToolBar(ToolBar toolBar, LocationParameters parameters, DockPosition position, boolean canDrag) {
-		LogRunner.logger().log(Level.INFO, String.format("Adding toolbar: %s, to %s with parameters %s and canDrag %s", toolBar, position, parameters, canDrag));
+		LogRunner.logger().info(String.format("Adding toolbar: %s, to %s with parameters %s and canDrag %s", toolBar, position, parameters, canDrag));
 		switch(position) {
 			case Top:
 				toolBar.orientationProperty().set(Orientation.HORIZONTAL);
@@ -69,7 +67,7 @@ public class ToolBarService implements IToolBarService {
 	
 	@Override
 	public void removeToolBar(ToolBar toolBar) {
-		LogRunner.logger().log(Level.INFO, String.format("Attempting to remove toolbar: %s", toolBar));
+		LogRunner.logger().info(String.format("Attempting to remove toolbar: %s", toolBar));
 		if (removeToolBarImpl(toolBar, topToolBars)) {
 			return;
 		}

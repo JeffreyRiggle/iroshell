@@ -1,7 +1,5 @@
 package ilusr.iroshell.statusbar;
 
-import java.util.logging.Level;
-
 import ilusr.iroshell.core.LocationParameters;
 import ilusr.logrunner.LogRunner;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -32,7 +30,7 @@ public class StatusBarService implements IStatusBarService{
 	@Override
 	public void addStatusBar(Node statusBar, LocationParameters location) throws IllegalArgumentException {
 		synchronized(statusBarLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Adding StatusBar: %s to %s", statusBar, location));
+			LogRunner.logger().info(String.format("Adding StatusBar: %s to %s", statusBar, location));
 			switch (location.type()) {
 				case First:
 					statusBars.add(0, statusBar);
@@ -55,7 +53,7 @@ public class StatusBarService implements IStatusBarService{
 	@Override
 	public void removeStatusBar(Node statusBar) {
 		synchronized(statusBarLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Removing status bar: %s", statusBar));
+			LogRunner.logger().info(String.format("Removing status bar: %s", statusBar));
 			statusBars.remove(statusBar);
 		}
 	}

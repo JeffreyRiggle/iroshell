@@ -59,13 +59,13 @@ public class MainShell extends Application {
     public void start(Stage stage) throws Exception {
 		//TODO: Clean this up a bit.
 		LogRunner.setApplicationName(applicationSettings.applicationName());
-		LogRunner.setLoggingLevel(Level.ALL);
-		LogRunner.logger().log(Level.INFO, String.format("Starting application %s", applicationSettings.applicationName()));
+		LogRunner.logger().setLevel(Level.ALL);
+		LogRunner.logger().info(String.format("Starting application %s", applicationSettings.applicationName()));
 		runPreApplicationScreens();
     }
 
 	private void runPreApplicationScreens() {
-		LogRunner.logger().log(Level.INFO, "Running pre-application screens.");
+		LogRunner.logger().info("Running pre-application screens.");
 		
 		if (applicationSettings.preApplicationScreens().size() == 0) {
 			runApplication(null);
@@ -76,13 +76,13 @@ public class MainShell extends Application {
 	}
 	
 	private void runPreApplicationScreen(final IPreApplicationScreen screen) {
-		LogRunner.logger().log(Level.INFO, "Running pre-application screen");
+		LogRunner.logger().info("Running pre-application screen");
 		
 		final Stage preApplicationStage = new Stage();
 		screen.setOnCompleted((e) -> {
 			
 			if (e.shouldTerminate()) {
-				LogRunner.logger().log(Level.INFO, "Closing application due to terminate pre-application screen.");
+				LogRunner.logger().warning("Closing application due to terminate pre-application screen.");
 				preApplicationStage.close();
 				return;
 			}
@@ -106,7 +106,7 @@ public class MainShell extends Application {
 			screen.setOnCompleted(null);
 			
 			if (useNext && nextScreen == null) {
-				LogRunner.logger().log(Level.INFO, "No more pre-application screens to run. Running main app.");
+				LogRunner.logger().info("No more pre-application screens to run. Running main app.");
 				runApplication(preApplicationStage);
 			}
 		});
@@ -124,7 +124,7 @@ public class MainShell extends Application {
 				registerServices(model, splashStage, preApplicationStage);
 			}, 0, TimeUnit.NANOSECONDS);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogRunner.logger().severe(e);
 		}
 	}
 	
@@ -135,7 +135,7 @@ public class MainShell extends Application {
 			return retVal;
 		}
 		
-		LogRunner.logger().log(Level.INFO, "Creating splash screen.");
+		LogRunner.logger().info("Creating splash screen.");
 		retVal = new SplashScreenModel();
 		
 		retVal.applicationName().setValue(applicationSettings.applicationName());
@@ -160,7 +160,7 @@ public class MainShell extends Application {
 		
 		splashStage = new Stage(StageStyle.UNDECORATED);
 		splashStage.setOnCloseRequest((we) -> {
-			LogRunner.logger().log(Level.INFO, "Closing splash screen");
+			LogRunner.logger().info("Closing splash screen");
 		});
 		
 		Scene splashRoot;
@@ -203,11 +203,11 @@ public class MainShell extends Application {
 						stage.close();					
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					LogRunner.logger().severe(e);
 				}
 			});
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogRunner.logger().severe(e);
 		}
 	}
 	
@@ -224,7 +224,7 @@ public class MainShell extends Application {
 			model.setCurrentState("Registering services.");
 		}
 
-		LogRunner.logger().log(Level.INFO, "Registering services");
+		LogRunner.logger().info("Registering services");
 		ServiceManager manager = ServiceManager.getInstance();
 		CoreRegistration.register(manager);
 		MenuRegistration.register(manager);
@@ -235,7 +235,7 @@ public class MainShell extends Application {
 	}
 	
 	private void setupUIAndShow(SplashScreenModel model) throws IOException {
-		LogRunner.logger().log(Level.INFO, "Loading UI");
+		LogRunner.logger().info("Loading UI");
         
 		if (model != null) {
         	model.setCurrentState("Loading UI.");
@@ -259,7 +259,7 @@ public class MainShell extends Application {
         setupApplicationFromSettings(mainStage);
 
 		if (hasFeature(ApplicationFeatures.PERSISTENCE_MANAGEMENT)) {
-        	LogRunner.logger().log(Level.INFO, "Setting up peristenceManagement");
+        	LogRunner.logger().info("Setting up peristenceManagement");
 			try {
 				registerPersistenceService(mainStage, true);
 			} catch (Exception e) {
@@ -270,7 +270,7 @@ public class MainShell extends Application {
     	}
 		
         mainStage.setOnCloseRequest((we) -> {
-        	LogRunner.logger().log(Level.INFO, "Application closing");
+        	LogRunner.logger().info("Application closing");
         	ServiceManager.getInstance().<IApplicationClosingManager>get("IApplicationClosingManager").onClose();
         	
         	//TODO: Should I have to do this?
@@ -350,7 +350,7 @@ public class MainShell extends Application {
 	}
 	
 	private void intializeComponents(LoadData data) {
-		LogRunner.logger().log(Level.INFO, "Loading components");
+		LogRunner.logger().info("Loading components");
 		for (IComponent comp : applicationSettings.components()) {
 			comp.load(data);
 		}

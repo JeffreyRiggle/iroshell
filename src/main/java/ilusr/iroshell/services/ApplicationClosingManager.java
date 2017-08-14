@@ -2,7 +2,6 @@ package ilusr.iroshell.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import ilusr.iroshell.core.ApplicationClosingListener;
 import ilusr.logrunner.LogRunner;
@@ -39,7 +38,7 @@ public class ApplicationClosingManager implements IApplicationClosingManager {
 	
 	@Override
 	public void onClose() {
-		LogRunner.logger().log(Level.INFO, "Notifying listeners about application closing.");
+		LogRunner.logger().info("Notifying listeners about application closing.");
 		for (ApplicationClosingListener listener : listeners) {
 			listener.onClose();
 		}

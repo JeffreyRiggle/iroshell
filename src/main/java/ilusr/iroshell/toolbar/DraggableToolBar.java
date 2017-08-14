@@ -13,6 +13,7 @@ import ilusr.iroshell.core.StyleUpdater;
 import ilusr.iroshell.services.IStyleContainerService;
 import ilusr.iroshell.services.IStyleWatcher;
 import ilusr.iroshell.services.RegistrationType;
+import ilusr.logrunner.LogRunner;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -64,7 +65,7 @@ public class DraggableToolBar extends AnchorPane implements Initializable, IStyl
 		try {
 			loader.load();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogRunner.logger().severe(e);
 		}
 	}
 

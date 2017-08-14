@@ -11,6 +11,7 @@ import ilusr.iroshell.core.StyleArea;
 import ilusr.iroshell.core.StyleUpdater;
 import ilusr.iroshell.services.IStyleWatcher;
 import ilusr.iroshell.services.StyleContainerService;
+import ilusr.logrunner.LogRunner;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -60,7 +61,7 @@ public class StatusBar extends AnchorPane implements Initializable, ListChangeLi
 		try {
 			statusLoader.load();
 		} catch (Exception exception) {
-			//TODO
+			LogRunner.logger().severe(exception);
 		}
 	}
 	

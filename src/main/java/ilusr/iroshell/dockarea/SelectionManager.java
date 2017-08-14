@@ -2,7 +2,6 @@ package ilusr.iroshell.dockarea;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import ilusr.core.interfaces.Callback;
 import ilusr.logrunner.LogRunner;
@@ -36,21 +35,21 @@ public class SelectionManager {
 	
 	public void addSelectionRequester(ISelectable requester) {
 		synchronized(requesterLock) {
-			LogRunner.logger().log(Level.INFO, "Adding Selection Requester %s", requester);
+			LogRunner.logger().info(String.format("Adding Selection Requester %s", requester));
 			requesters.add(requester);
 		}
 	}
 	
 	public void removeSelectionRequester(ISelectable requester) {
 		synchronized(requesterLock) {
-			LogRunner.logger().log(Level.INFO, "Removing Selection Requester %s", requester);
+			LogRunner.logger().info(String.format("Removing Selection Requester %s", requester));
 			requesters.remove(requester);
 		}
 	}
 	
 	public void RequestSelection(ISelectable requester) {
 		synchronized(requesterLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Requesting selection for: %s", requester));
+			LogRunner.logger().info(String.format("Requesting selection for: %s", requester));
 			for (ISelectable request : requesters) {
 				if (request == requester) {
 					request.select();

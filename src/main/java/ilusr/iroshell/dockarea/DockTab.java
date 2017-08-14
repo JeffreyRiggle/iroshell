@@ -24,6 +24,7 @@ import ilusr.core.javafx.LocalDragboard;
 import ilusr.iroshell.core.StyleArea;
 import ilusr.iroshell.services.IStyleContainerService;
 import ilusr.iroshell.services.IStyleWatcher;
+import ilusr.logrunner.LogRunner;
 
 @SuppressWarnings("restriction")
 public class DockTab extends Tab implements Initializable, ICloseable, ISelectable, IStyleWatcher {
@@ -47,7 +48,7 @@ public class DockTab extends Tab implements Initializable, ICloseable, ISelectab
 		try {
 			tabLoader.load();
 		} catch (Exception exception) {
-			exception.printStackTrace();
+			LogRunner.logger().severe(exception);
 		}
 	}
 

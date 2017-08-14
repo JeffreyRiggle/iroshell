@@ -3,7 +3,6 @@ package ilusr.iroshell.features;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.Thread.UncaughtExceptionHandler;
-import java.util.logging.Level;
 
 import ilusr.iroshell.services.IDialogService;
 import ilusr.logrunner.LogRunner;
@@ -35,7 +34,7 @@ public class ExceptionHandler implements UncaughtExceptionHandler{
 	@Override
 	public void uncaughtException(Thread t, Throwable e) {
 		if (shouldLog) {
-			LogRunner.logger().log(Level.INFO, String.format("%s\n%s", e.getMessage(), getStackString(e)));
+			LogRunner.logger().severe(String.format("%s\n%s", e.getMessage(), getStackString(e)));
 		}
 
 		if (dialogProvider != null) {

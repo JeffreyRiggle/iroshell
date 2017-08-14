@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
 import java.util.UUID;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -81,14 +80,14 @@ public class PersistableToolBarService implements IPersistableToolBarService{
 			manager = new XmlManager(new String());
 			configurationManager = new XmlConfigurationManager(manager, new ArrayList<PersistXml>());
 		} catch (Exception e) {
-			LogRunner.logger().log(Level.INFO, String.format("%s", e));
+			LogRunner.logger().info(String.format("%s", e));
 		}
 	}
 	
 	@Override
 	public void registerBluePrint(String bluePrintName, IToolBarBluePrint bluePrint) {
 		synchronized(bluePrintLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Registering blue print: %s", bluePrintName));
+			LogRunner.logger().info(String.format("Registering blue print: %s", bluePrintName));
 			bluePrintMap.put(bluePrintName, bluePrint);
 		}
 		
@@ -102,7 +101,7 @@ public class PersistableToolBarService implements IPersistableToolBarService{
 	@Override
 	public void unregisterBluePrint(String bluePrintName) {
 		synchronized(bluePrintLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Un-registering blue print: %s", bluePrintName));
+			LogRunner.logger().info(String.format("Un-registering blue print: %s", bluePrintName));
 			bluePrintMap.remove(bluePrintName);
 		}
 	}
@@ -127,7 +126,7 @@ public class PersistableToolBarService implements IPersistableToolBarService{
 			throw new IllegalArgumentException(String.format("Invalid BluePrintName: %s", bluePrintName));
 		}
 		
-		LogRunner.logger().log(Level.INFO, String.format("Creating toolbar from blue print: %s", bluePrintName));
+		LogRunner.logger().info(String.format("Creating toolbar from blue print: %s", bluePrintName));
 		ToolBar tb = bluePrint.create();
 		synchronized(layoutLock) {
 			service.addToolBar(tb, parameters, position, canDrag);
@@ -159,7 +158,7 @@ public class PersistableToolBarService implements IPersistableToolBarService{
 	public void savePersistence() {
 		try {
 			synchronized(layoutLock) {
-				LogRunner.logger().log(Level.INFO, "Saving Persistence");
+				LogRunner.logger().info("Saving Persistence");
 				configurationManager.clearConfigurationObjects();
 				persistToolArea(service.leftToolBars(), DockPosition.Left);
 				persistToolArea(service.topToolBars(), DockPosition.Top);
@@ -169,14 +168,14 @@ public class PersistableToolBarService implements IPersistableToolBarService{
 				configurationManager.prepare();
 			}
 		} catch (Exception e) {
-			LogRunner.logger().log(Level.INFO, String.format("%s", e));
+			LogRunner.logger().severe(e);
 		}
 	}
 	
 	@Override
 	public void loadLayout(ToolBarAreaPersistence persistence) {
 		synchronized(layoutLock) {
-			LogRunner.logger().log(Level.INFO, "Loading toolbar layout.");
+			LogRunner.logger().info("Loading toolbar layout.");
 			persistToolArea(persistence, DockPosition.Top);
 			persistToolArea(persistence, DockPosition.Left);
 			persistToolArea(persistence, DockPosition.Right);
@@ -212,7 +211,7 @@ public class PersistableToolBarService implements IPersistableToolBarService{
 		try {
 			addToolBarImpl(tbp.getBluePrint(), LocationProvider.last(), pos, tbp.getDraggable(), tbp.getID());
 		} catch (IllegalArgumentException e) {
-			LogRunner.logger().log(Level.INFO, String.format("Adding: %s, to defered toolbars", tbp));
+			LogRunner.logger().info(String.format("Adding: %s, to defered toolbars", tbp));
 			// In the case we persist before the blue print has registered this will happen.
 			deferredToolBars.add(new Tuple<DockPosition, ToolBarPersistence>(pos, tbp));
 		}
@@ -275,7 +274,7 @@ public class PersistableToolBarService implements IPersistableToolBarService{
 	@Override
 	public void clearToolBars() {
 		synchronized(layoutLock) {
-			LogRunner.logger().log(Level.INFO, "Clearing toolbars.");
+			LogRunner.logger().info("Clearing toolbars.");
 			for (Tuple<String, ToolBar> entry : persistableToolBars.values()) {
 				service.removeToolBar(entry.value());
 			}

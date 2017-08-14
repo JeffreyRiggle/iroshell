@@ -3,6 +3,7 @@ package ilusr.iroshell.documentinterfaces.sdi;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ilusr.logrunner.LogRunner;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -44,8 +45,7 @@ public class SingleDocumentInterface extends AnchorPane implements Initializable
 		try {
 			loader.load();
 		} catch (Exception exception) {
-			//TODO
-			exception.printStackTrace();
+			LogRunner.logger().severe(exception);
 		}
 	}
 

@@ -2,7 +2,6 @@ package ilusr.iroshell.core;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 
 import ilusr.logrunner.LogRunner;
 import javafx.scene.Node;
@@ -32,7 +31,7 @@ public class ViewSwitcher<T> extends AnchorPane{
 	 * @param view A @see ViewProvider to use to generate the view.
 	 */
 	public void addView(T viewId, IViewProvider view) {
-		LogRunner.logger().log(Level.INFO, String.format("Adding view id: %s", viewId));
+		LogRunner.logger().info(String.format("Adding view id: %s", viewId));
 		viewMap.put(viewId, view);
 	}
 	
@@ -41,7 +40,7 @@ public class ViewSwitcher<T> extends AnchorPane{
 	 * @param viewId The key for the view.
 	 */
 	public void removeView(T viewId) {
-		LogRunner.logger().log(Level.INFO, String.format("Removing view id: %s", viewId));
+		LogRunner.logger().info(String.format("Removing view id: %s", viewId));
 		viewMap.remove(viewId);
 	}
 	
@@ -51,7 +50,7 @@ public class ViewSwitcher<T> extends AnchorPane{
 	 */
 	public void switchView(T viewId) {
 		if (!viewMap.containsKey(viewId)) {
-			LogRunner.logger().log(Level.INFO, String.format("Unable to find view id: %s", viewId));
+			LogRunner.logger().info(String.format("Unable to find view id: %s", viewId));
 			return;
 		}
 		
@@ -68,7 +67,7 @@ public class ViewSwitcher<T> extends AnchorPane{
 	 * Removes all views from the view map.
 	 */
 	public void clearViews() {
-		LogRunner.logger().log(Level.INFO, "Clearing all views from view switcher");
+		LogRunner.logger().info("Clearing all views from view switcher");
 		viewMap.clear();
 	}
 }

@@ -1,6 +1,7 @@
 package ilusr.iroshell.documentinterfaces.mdi;
 
 import ilusr.iroshell.dockarea.DockArea;
+import ilusr.logrunner.LogRunner;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -26,8 +27,7 @@ public class MultipleDocumentInterface extends AnchorPane {
 		try {
 			loader.load();
 		} catch (Exception exception) {
-			//TODO
-			exception.printStackTrace();
+			LogRunner.logger().severe(exception);
 		}
 	}
 	

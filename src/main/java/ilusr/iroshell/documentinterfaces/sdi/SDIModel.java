@@ -2,7 +2,6 @@ package ilusr.iroshell.documentinterfaces.sdi;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 
 import ilusr.logrunner.LogRunner;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -43,11 +42,11 @@ public class SDIModel implements ISDIModel {
 	@Override
 	public void changeView(String viewId) {
 		if (!viewPool.containsKey(viewId)) {
-			LogRunner.logger().log(Level.INFO, String.format("Unable to find view %s", viewId));
+			LogRunner.logger().warning(String.format("Unable to find view %s", viewId));
 			return;
 		}
 		
-		LogRunner.logger().log(Level.INFO, String.format("Changing view to %s", viewId));
+		LogRunner.logger().info(String.format("Changing view to %s", viewId));
 		selectedViewId = viewId;
 		currentView.setValue(viewPool.get(viewId));
 	}

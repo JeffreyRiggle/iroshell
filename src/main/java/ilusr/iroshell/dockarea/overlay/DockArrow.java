@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import ilusr.core.ioc.ServiceManager;
 import ilusr.iroshell.services.IStyleContainerService;
+import ilusr.logrunner.LogRunner;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -34,7 +35,7 @@ public class DockArrow extends VBox implements Initializable, IStyleListener {
 		try {
 			arrowLoader.load();
 		} catch (Exception exception) {
-			exception.printStackTrace();
+			LogRunner.logger().severe(exception);
 		}
 	}
 	

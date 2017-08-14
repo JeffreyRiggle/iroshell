@@ -10,6 +10,7 @@ import ilusr.iroshell.core.StyleArea;
 import ilusr.iroshell.core.StyleUpdater;
 import ilusr.iroshell.services.IStyleWatcher;
 import ilusr.iroshell.services.StyleContainerService;
+import ilusr.logrunner.LogRunner;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
@@ -46,7 +47,7 @@ public class GCMenuBar extends AnchorPane implements ListChangeListener<Menu>, I
 		try {
 			menuLoader.load();
 		} catch (Exception exception) {
-			//TODO
+			LogRunner.logger().severe(exception);
 		}
 	}
 

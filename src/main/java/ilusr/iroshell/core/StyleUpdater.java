@@ -1,7 +1,5 @@
 package ilusr.iroshell.core;
 
-import java.util.logging.Level;
-
 import ilusr.core.url.InternalURLProvider;
 import ilusr.logrunner.LogRunner;
 import javafx.scene.Parent;
@@ -42,7 +40,7 @@ public class StyleUpdater {
 		provider.removeURL(resource);
 		resource = provider.prepareURL(style, String.format("%s%s.css", sourceName, count++));
 		
-		LogRunner.logger().log(Level.INFO, String.format("Appling style to %s", resource));
+		LogRunner.logger().info(String.format("Appling style to %s", resource));
 		StyleHack.applyStyle(resource, parent);
 	}
 }

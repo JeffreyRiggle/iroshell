@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 
 import com.sun.javafx.scene.control.skin.TabPaneSkin;
 
@@ -65,7 +64,7 @@ public class DockPanel extends AnchorPane implements Initializable, ListChangeLi
 		try {
 			dockLoader.load();
 		} catch (Exception exception) {
-			exception.printStackTrace();
+			LogRunner.logger().severe(exception);
 		}
 	}
 	
@@ -217,7 +216,7 @@ public class DockPanel extends AnchorPane implements Initializable, ListChangeLi
 		final List<? extends DockTab> addedItems = c.getList();
 		synchronized(tabLock) {
 			if (removedItems.size() > 0) {
-				LogRunner.logger().log(Level.INFO, String.format("Removing children from %s\n", dockPanelModel.id()));
+				LogRunner.logger().info(String.format("Removing children from %s\n", dockPanelModel.id()));
 				dockArea.getTabs().removeAll(removedItems);
 			}
 			if (addedItems.size() > 0) {
@@ -228,7 +227,7 @@ public class DockPanel extends AnchorPane implements Initializable, ListChangeLi
 							dockArea.getTabs().remove(item);
 						}
 						
-						LogRunner.logger().log(Level.INFO, String.format("Adding children to %s\n", dockPanelModel.id()));
+						LogRunner.logger().info(String.format("Adding children to %s\n", dockPanelModel.id()));
 						dockArea.getTabs().add(item);
 						continue;
 					}
@@ -238,7 +237,7 @@ public class DockPanel extends AnchorPane implements Initializable, ListChangeLi
 							dockArea.getTabs().remove(item);
 						}
 						
-						LogRunner.logger().log(Level.INFO, String.format("Adding children to %s\n", dockPanelModel.id()));
+						LogRunner.logger().info(String.format("Adding children to %s\n", dockPanelModel.id()));
 						dockArea.getTabs().add(i, item);
 					}
 				}
