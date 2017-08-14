@@ -2,7 +2,6 @@ package ilusr.iroshell.menus;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import ilusr.iroshell.core.LocationParameters;
 import ilusr.logrunner.LogRunner;
@@ -31,7 +30,7 @@ public class MenuService implements IMenuService{
 	@Override
 	public void addMenu(Menu menu, LocationParameters params) {
 		synchronized(menuLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Adding menu: %s, with parameter type: %s\n", menu.getText(), params));
+			LogRunner.logger().info(String.format("Adding menu: %s, with parameter type: %s\n", menu.getText(), params));
 			Menu foundMenu = null;
 			
 			for (Menu m : menus) {
@@ -42,12 +41,12 @@ public class MenuService implements IMenuService{
 			}
 			
 			if (foundMenu == null) {
-				LogRunner.logger().log(Level.INFO, String.format("Unable to find menu for %s\n", menu.getText()));
+				LogRunner.logger().info(String.format("Unable to find menu for %s\n", menu.getText()));
 				addMenuToLocation(menu, params);
 				return;
 			}
 
-			LogRunner.logger().log(Level.INFO, String.format("Found menu for %s\n", foundMenu.getText()));
+			LogRunner.logger().info(String.format("Found menu for %s\n", foundMenu.getText()));
 			mergeMenuItems(foundMenu, menu);
 		}
 	}
@@ -95,7 +94,7 @@ public class MenuService implements IMenuService{
 		for (MenuItem mi : target.getItems()) {
 			if (hasMenuItem(source.getItems(), mi.getText())) continue;
 			
-			LogRunner.logger().log(Level.INFO, String.format("Found sub item to add %s\n", mi.getText()));
+			LogRunner.logger().info(String.format("Found sub item to add %s\n", mi.getText()));
 			itemsToAdd.add(mi);
 		}
 		
@@ -119,7 +118,7 @@ public class MenuService implements IMenuService{
 	@Override
 	public void removeMenu(Menu menu) {
 		synchronized(menuLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Removing menu: %s\n", menu.getText()));
+			LogRunner.logger().info(String.format("Removing menu: %s\n", menu.getText()));
 			menus.remove(menu);
 		}
 	}
@@ -134,7 +133,7 @@ public class MenuService implements IMenuService{
 	@Override
 	public void addMenuItem(MenuItem item, String parent, LocationParameters location) {
 		synchronized(menuLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Adding menu item: %s, to parent: %s, with parameter type: %s\n", item.getText(), parent, location));
+			LogRunner.logger().info(String.format("Adding menu item: %s, to parent: %s, with parameter type: %s\n", item.getText(), parent, location));
 			Menu parentMenu = null;
 			
 			for (Menu m : menus) {
@@ -193,7 +192,7 @@ public class MenuService implements IMenuService{
 	@Override
 	public void removeMenuItem(MenuItem item, String parent) {
 		synchronized(menuLock) {
-			LogRunner.logger().log(Level.INFO, String.format("Removing menu item: %s from parent %s\n", item.getText(), parent));
+			LogRunner.logger().info(String.format("Removing menu item: %s from parent %s\n", item.getText(), parent));
 			for (Menu m : menus) {
 				if (!m.getText().equals(parent)) continue;
 			

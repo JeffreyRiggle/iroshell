@@ -1,7 +1,6 @@
 package ilusr.iroshell.services;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
@@ -92,11 +91,11 @@ public class PersistenceService implements ApplicationClosingListener{
 	 */
 	public void savePersistence() {
 		if (manager.saveLocation().equals(new String())) {
-			LogRunner.logger().log(Level.INFO, "Not saving persistence due to invalid save path.");
+			LogRunner.logger().warning("Not saving persistence due to invalid save path.");
 			return;
 		}
 
-		LogRunner.logger().log(Level.INFO, "Configuring application state.");
+		LogRunner.logger().info("Configuring application state.");
 		saveShell();
 		toolBarService.savePersistence();
 		layoutService.savePersistence();
@@ -119,10 +118,10 @@ public class PersistenceService implements ApplicationClosingListener{
 		configurationManager.addConfigurationObject(shellConfiguration);
 		
 		try {
-			LogRunner.logger().log(Level.INFO, String.format("Saving application state to: %s", manager.saveLocation()));
+			LogRunner.logger().info(String.format("Saving application state to: %s", manager.saveLocation()));
 			configurationManager.save();
 		} catch (Exception e) {
-			LogRunner.logger().log(Level.INFO, String.format("%s", e));
+			LogRunner.logger().severe(e);
 		}
 	}
 	
@@ -153,12 +152,12 @@ public class PersistenceService implements ApplicationClosingListener{
 	 */
 	public void loadPersistence() {
 		if (manager.saveLocation().equals(new String())) {
-			LogRunner.logger().log(Level.INFO, "Not loading persistence due to invalid save path.");
+			LogRunner.logger().warning("Not loading persistence due to invalid save path.");
 			return;
 		}
 		
 		try {
-			LogRunner.logger().log(Level.INFO, String.format("Loading persistence from: %s", manager.saveLocation()));
+			LogRunner.logger().info(String.format("Loading persistence from: %s", manager.saveLocation()));
 			configurationManager.load();
 			shellConfiguration = (XmlConfigurationObject)configurationManager.configurationObjects().get(0);
 			shellPersistence.convertFromPersistence((XmlConfigurationObject)shellConfiguration.children().get(0));
@@ -172,7 +171,7 @@ public class PersistenceService implements ApplicationClosingListener{
 			}
 			
 		} catch (Exception e) {
-			LogRunner.logger().log(Level.INFO, String.format("%s", e));
+			LogRunner.logger().severe(e);
 		}
 	}
 	

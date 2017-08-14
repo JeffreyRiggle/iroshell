@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
 
 import ilusr.logrunner.LogRunner;
 
@@ -50,7 +49,7 @@ public class StyleContainerService implements IStyleContainerService {
 	}
 	
 	private void registerImpl(String id, String css, RegistrationType type) {
-		LogRunner.logger().log(Level.INFO, String.format("Registering style: %s, with type %s", id, type));
+		LogRunner.logger().info(String.format("Registering style: %s, with type %s", id, type));
 		switch (type) {
 			case Override:
 				override(id, css);
@@ -170,7 +169,7 @@ public class StyleContainerService implements IStyleContainerService {
 	private boolean tryAdd(String id, String css) {
 		synchronized(styleLock) {
 			if (styleMap.containsKey(id)) {
-				LogRunner.logger().log(Level.INFO, String.format("Not adding style: %s, since it already exits.", id));
+				LogRunner.logger().info(String.format("Not adding style: %s, since it already exits.", id));
 				return false;
 			}
 		
@@ -191,7 +190,7 @@ public class StyleContainerService implements IStyleContainerService {
 			}
 		}
 		
-		LogRunner.logger().log(Level.INFO, String.format("Notifying watcher about update to: %s", id));
+		LogRunner.logger().info(String.format("Notifying watcher about update to: %s", id));
 		for (IStyleWatcher watcher : interestedParties) {
 			watcher.update(id, css);
 		}

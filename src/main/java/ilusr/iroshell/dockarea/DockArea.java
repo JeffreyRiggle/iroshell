@@ -3,7 +3,6 @@ package ilusr.iroshell.dockarea;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 
 import ilusr.core.ioc.ServiceManager;
 import ilusr.core.javafx.LocalDragboard;
@@ -62,7 +61,7 @@ public class DockArea extends AnchorPane implements Initializable, IDropListener
 		this.urlProvider = urlProvider;
 		this.styleService = styleService;
 		
-		LogRunner.logger().log(Level.INFO, String.format("Created new area controller with id: %s", this.model.id()));
+		LogRunner.logger().info(String.format("Created new area controller with id: %s", this.model.id()));
 		FXMLLoader dockLoader = new FXMLLoader(getClass().getResource("dockarea.fxml"));
 		dockLoader.setRoot(this);
 		dockLoader.setController(this);
@@ -72,8 +71,7 @@ public class DockArea extends AnchorPane implements Initializable, IDropListener
 			dockOverlay = new DockOverlay();
 			dockOverlay.model().addListener(this);
 		} catch (Exception exception) {
-			//TODO
-			exception.printStackTrace();
+			LogRunner.logger().severe(exception);
 		}
 	}
 	
@@ -108,13 +106,13 @@ public class DockArea extends AnchorPane implements Initializable, IDropListener
 	
 	public void setModel(DockAreaModel model) {
 		if (this.model != null) {
-			LogRunner.logger().log(Level.INFO, "Cleaning up and unbinding model.");
+			LogRunner.logger().info("Cleaning up and unbinding model.");
 			this.model.setDockPanel(null);
 			this.model.width().unbind();
 			this.model.height().unbind();
 		}
 		
-		LogRunner.logger().log(Level.INFO, "Setting up model.");
+		LogRunner.logger().info("Setting up model.");
 		tabs().clear();
 		this.model = model;
 		tabs().addAll(this.model.getDockPanel().tabs());
@@ -134,7 +132,7 @@ public class DockArea extends AnchorPane implements Initializable, IDropListener
 	}
 	
 	public void selectTab(DockTab tab) {
-		LogRunner.logger().log(Level.INFO, String.format("Selecting tab: %s", tab.idProperty().get()));
+		LogRunner.logger().fine(String.format("Selecting tab: %s", tab.idProperty().get()));
 		dockPanel.updateSelection(tab);
 	}
 	
@@ -151,7 +149,7 @@ public class DockArea extends AnchorPane implements Initializable, IDropListener
 	}
 	
 	private void onDragLeftOverlay(DragEvent event) {
-		LogRunner.logger().log(Level.INFO, "Removing Overlay.");
+		LogRunner.logger().fine("Removing Overlay.");
 		
         if (stackPane.getChildren().contains(dockOverlay)) {
         	stackPane.getChildren().remove(dockOverlay);
@@ -171,7 +169,7 @@ public class DockArea extends AnchorPane implements Initializable, IDropListener
 	}
 	
 	private void setupOverlay(DragEvent event) {
-		LogRunner.logger().log(Level.INFO, "Adding Overlay.");
+		LogRunner.logger().fine("Adding Overlay.");
 		
 		event.acceptTransferModes(TransferMode.ANY);
 
@@ -228,7 +226,7 @@ public class DockArea extends AnchorPane implements Initializable, IDropListener
 	}
 
 	private Node addDockArea(Orientation orientation, DockPanel parent, int index, DockTab tab) {
-		LogRunner.logger().log(Level.INFO, "Adding Dock Area.");
+		LogRunner.logger().info("Adding Dock Area.");
 		//TODO Fix this up a lot
 		try {
 			DockArea container = new DockArea();
@@ -257,13 +255,13 @@ public class DockArea extends AnchorPane implements Initializable, IDropListener
 			model.hasChildren().set(true);
 			model.child().set(container.model());
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogRunner.logger().severe(e);
 		}
 		return splitPane;
 	}
 	
 	private void restoreDockArea(Orientation orientation, DockPanel parent, int index, DockAreaModel model) {
-		LogRunner.logger().log(Level.INFO, "Restoring Dock Area.");
+		LogRunner.logger().info("Restoring Dock Area.");
 		//TODO Fix this up a lot
 		try {
 			DockArea container = new DockArea();
@@ -287,7 +285,7 @@ public class DockArea extends AnchorPane implements Initializable, IDropListener
 			stackPane.getChildren().add(splitPane);
 			container.setModel(model);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogRunner.logger().severe(e);
 		}
 	}
 	

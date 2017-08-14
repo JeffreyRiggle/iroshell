@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
 
 import ilusr.logrunner.LogRunner;
 import javafx.geometry.Rectangle2D;
@@ -47,12 +46,12 @@ public class NotificationService implements INotificationService{
 	@Override
 	public void addNotification(INotification notification) {
 		if (shownNotifications.size() == maxNotifications) {
-			LogRunner.logger().log(Level.INFO, String.format("Queuing up notification: %s", notification.title()));
+			LogRunner.logger().info(String.format("Queuing up notification: %s", notification.title()));
 			queuedNotifications.add(notification);
 			return;
 		}
 
-		LogRunner.logger().log(Level.INFO, String.format("Adding notification: %s, to shown list.", notification.title()));
+		LogRunner.logger().info(String.format("Adding notification: %s, to shown list.", notification.title()));
 		shownNotifications.put(notification, createAndShowStage(notification));
 	}
 	
@@ -63,12 +62,12 @@ public class NotificationService implements INotificationService{
 	
 	private void removeNotificationImpl(INotification notification) {
 		if (queuedNotifications.contains(notification)) {
-			LogRunner.logger().log(Level.INFO, String.format("Removing notification: %s, from queue.", notification.title()));
+			LogRunner.logger().info(String.format("Removing notification: %s, from queue.", notification.title()));
 			queuedNotifications.remove(notification);
 			return;
 		}
 		
-		LogRunner.logger().log(Level.INFO, String.format("Removing and closing notification: %s", notification.title()));
+		LogRunner.logger().info(String.format("Removing and closing notification: %s", notification.title()));
 		shownNotifications.get(notification).close();
 		shownNotifications.remove(notification);
 		showNext();
@@ -81,7 +80,7 @@ public class NotificationService implements INotificationService{
 		
 		INotification next = queuedNotifications.get(0);
 		
-		LogRunner.logger().log(Level.INFO, String.format("Moving notification: %s, from queue to shown", next.title()));
+		LogRunner.logger().info(String.format("Moving notification: %s, from queue to shown", next.title()));
 		shownNotifications.put(next, createAndShowStage(next));
 		queuedNotifications.remove(0);
 		return true;
@@ -127,7 +126,7 @@ public class NotificationService implements INotificationService{
 	
 	@Override
 	public void setMaxNotifications(int max) {
-		LogRunner.logger().log(Level.INFO, String.format("Updating max notifications to %s", max));
+		LogRunner.logger().info(String.format("Updating max notifications to %s", max));
 		maxNotifications = max;
 		
 		boolean addQueuedNotifications = true;

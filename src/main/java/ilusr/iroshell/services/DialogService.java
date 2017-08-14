@@ -1,7 +1,5 @@
 package ilusr.iroshell.services;
 
-import java.util.logging.Level;
-
 import ilusr.logrunner.LogRunner;
 import javafx.application.Platform;
 import javafx.scene.Node;
@@ -48,7 +46,7 @@ public class DialogService implements IDialogService {
 	}
 	
 	private void displayModalImpl(Stage stage) {
-		LogRunner.logger().log(Level.INFO, "Displaying a modal overlay");
+		LogRunner.logger().info("Displaying a modal overlay");
 		stage.initOwner(window);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.showAndWait();
@@ -72,7 +70,7 @@ public class DialogService implements IDialogService {
 	}
 	
 	private void displayModalImpl(Scene scene, String title) {
-		LogRunner.logger().log(Level.INFO, "Displaying a modal overlay");
+		LogRunner.logger().info("Displaying a modal overlay");
 		Stage stage = createStage(scene, title);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.showAndWait();
@@ -96,7 +94,7 @@ public class DialogService implements IDialogService {
 	}
 	
 	private void displayModalImpl(Parent root, String title) {
-		LogRunner.logger().log(Level.INFO, "Displaying a modal overlay");
+		LogRunner.logger().info("Displaying a modal overlay");
 		Stage stage = createStage(new Scene(root), title);
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.showAndWait();
@@ -115,7 +113,7 @@ public class DialogService implements IDialogService {
 	}
 	
 	private void displayModelessImpl(Stage stage) {
-		LogRunner.logger().log(Level.INFO, "Displaying a modeless overlay");
+		LogRunner.logger().info("Displaying a modeless overlay");
 		stage.initOwner(window);
 		stage.show();
 	}
@@ -127,7 +125,7 @@ public class DialogService implements IDialogService {
 
 	@Override
 	public void displayModeless(Scene scene, String title) {
-		LogRunner.logger().log(Level.INFO, "Displaying a modeless overlay");
+		LogRunner.logger().info("Displaying a modeless overlay");
 		if (Platform.isFxApplicationThread()) {
 			createStage(scene, title).show();
 			return;
@@ -145,7 +143,7 @@ public class DialogService implements IDialogService {
 	
 	@Override
 	public void displayModeless(Parent root, String title) {
-		LogRunner.logger().log(Level.INFO, "Displaying a modeless overlay");
+		LogRunner.logger().info("Displaying a modeless overlay");
 		if (Platform.isFxApplicationThread()) {
 			createStage(new Scene(root), title).show();
 			return;

@@ -2,7 +2,6 @@ package ilusr.iroshell.services;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
 
 import ilusr.logrunner.LogRunner;
 import javafx.application.Platform;
@@ -63,7 +62,7 @@ public class Notification implements INotification{
 			return;
 		}
 		
-		LogRunner.logger().log(Level.INFO, String.format("Starting close timer for: %s, with ttl: %s", title, ttl));
+		LogRunner.logger().info(String.format("Starting close timer for: %s, with ttl: %s", title, ttl));
 		
 		if (timer == null) {
 			timer = new Timer();
@@ -85,7 +84,7 @@ public class Notification implements INotification{
 	
 	private void close() {
 		Platform.runLater(() -> {
-			LogRunner.logger().log(Level.INFO, String.format("Closing notification: %s", title));
+			LogRunner.logger().info(String.format("Closing notification: %s", title));
 			Stage stage = (Stage)parent.getScene().getWindow();
 			stage.getOnCloseRequest().handle(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 		});

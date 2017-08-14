@@ -3,7 +3,6 @@ package ilusr.iroshell.main;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 
 import ilusr.core.ioc.ServiceManager;
 import ilusr.core.url.InternalURLProvider;
@@ -87,7 +86,7 @@ public class ApplicationShell extends GridPane implements Initializable, IStyleW
 		try {
 			appLoader.load();
 		} catch (Exception exception) {
-			exception.printStackTrace();
+			LogRunner.logger().severe(exception);
 		}
 	}
 	
@@ -121,7 +120,7 @@ public class ApplicationShell extends GridPane implements Initializable, IStyleW
 		Menu file = new Menu("File");
 		MenuItem exit = new MenuItem("Exit");
 		exit.setOnAction((event) -> {
-			LogRunner.logger().log(Level.INFO, "File -> Exit pressed.");
+			LogRunner.logger().info("File -> Exit pressed.");
 			Stage stage  = (Stage)super.getScene().getWindow();
 			stage.getOnCloseRequest().handle(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
 		});
@@ -151,14 +150,14 @@ public class ApplicationShell extends GridPane implements Initializable, IStyleW
 	}
 	
 	private void collapseStatusBar() {
-		LogRunner.logger().log(Level.INFO, "Collapsing status bar.");
+		LogRunner.logger().info("Collapsing status bar.");
 		footer.getRowConstraints().get(1).setMinHeight(0);
 		footer.getRowConstraints().get(1).setPrefHeight(0);
 		footer.getRowConstraints().get(1).setMaxHeight(0);
 	}
 	
 	private void expandStatusBar() {
-		LogRunner.logger().log(Level.INFO, "Expanding status bar.");
+		LogRunner.logger().info("Expanding status bar.");
 		footer.getRowConstraints().get(1).setMinHeight(25);
 		footer.getRowConstraints().get(1).setMaxHeight(30);
 		footer.getRowConstraints().get(1).setPrefHeight(30);
@@ -171,13 +170,13 @@ public class ApplicationShell extends GridPane implements Initializable, IStyleW
 
 	@Override
 	public void overlay(Node node) {
-		LogRunner.logger().log(Level.INFO, "Displaying overlay");
+		LogRunner.logger().fine("Displaying overlay");
 		stackPane.getChildren().add(0, node);
 	}
 	
 	@Override
 	public void clearOverlay(Node node) {
-		LogRunner.logger().log(Level.INFO, "Removing overlay");
+		LogRunner.logger().fine("Removing overlay");
 		stackPane.getChildren().remove(node);
 	}
 }

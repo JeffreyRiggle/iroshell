@@ -17,6 +17,7 @@ import ilusr.iroshell.services.IStyleWatcher;
 import ilusr.iroshell.services.IToolBarService;
 import ilusr.iroshell.services.RegistrationType;
 import ilusr.iroshell.services.StyleContainerService;
+import ilusr.logrunner.LogRunner;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -72,7 +73,7 @@ public class ToolingArea extends AnchorPane implements Initializable, ListChange
 		try {
 			toolingAreaLoader.load();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogRunner.logger().severe(e);
 		}
 	}
 
