@@ -3,9 +3,8 @@ package ilusr.iroshell.dockarea;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.ResourceBundle;
-
-import com.sun.javafx.scene.control.skin.TabPaneSkin;
 
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -14,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.DragEvent;
@@ -200,11 +200,20 @@ public class DockPanel extends AnchorPane implements Initializable, ListChangeLi
 	
 	@SuppressWarnings("unused")
 	public Rectangle headerRegion() {
-		Bounds tBounds = ((TabPaneSkin)dockArea.skinProperty().<TabPaneSkin>get()).getSelectedTabContentRegion().getLayoutBounds();
-		// The 29 is kind of a hack. I could not find a better way to find
-		// the header width so I used scenic view and found that the value was
-		// always 29.
-		Rectangle retVal = new Rectangle(tBounds.getMinX(), tBounds.getMinY(), tBounds.getWidth(), 29);
+		Rectangle retVal = new Rectangle(0, 0, 0, 0);
+		Set<Node> tabs = dockArea.lookupAll(".tab");
+
+		for (Node node : tabs) {
+			if (node.getId().equals(dockArea.getSelectionModel().getSelectedItem().getId())) {
+				Bounds tBounds = node.localToScene(node.getBoundsInLocal());
+				
+				// The 29 is kind of a hack. I could not find a better way to find
+				// the header width so I used scenic view and found that the value was
+				// always 29.
+				retVal = new Rectangle(tBounds.getMinX(), tBounds.getMinY(), tBounds.getWidth(), 29);
+			}
+		}
+
 		return retVal;
 	}
 	

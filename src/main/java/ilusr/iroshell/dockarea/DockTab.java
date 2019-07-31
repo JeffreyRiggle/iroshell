@@ -4,11 +4,9 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-import com.sun.javafx.scene.control.behavior.TabPaneBehavior;
-import com.sun.javafx.scene.control.skin.TabPaneSkin;
-
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
@@ -99,12 +97,7 @@ public class DockTab extends Tab implements Initializable, ICloseable, ISelectab
 			return;
 		}
 		
-		TabPaneSkin skin = (TabPaneSkin)tabPaneProperty().get().getSkin();
-		TabPaneBehavior behavior = skin.getBehavior();
-		
-		if (behavior.canCloseTab(this)) {
-			behavior.closeTab(this);
-		}
+		Event.fireEvent(this, new Event(Tab.TAB_CLOSE_REQUEST_EVENT));
 	}
 	
 	private void setupDragAndDrop() {
