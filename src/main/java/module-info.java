@@ -14,6 +14,8 @@ module ilusr.iroshell {
     exports ilusr.iroshell.dockarea;
     exports ilusr.iroshell.dockarea.overlay;
     exports ilusr.iroshell.documentinterfaces;
+    exports ilusr.iroshell.documentinterfaces.sdi;
+    exports ilusr.iroshell.documentinterfaces.mdi;
     exports ilusr.iroshell.features;
     exports ilusr.iroshell.main;
     exports ilusr.iroshell.persistence;
