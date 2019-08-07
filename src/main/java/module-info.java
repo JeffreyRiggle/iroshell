@@ -18,6 +18,7 @@ module ilusr.iroshell {
     exports ilusr.iroshell.documentinterfaces.mdi;
     exports ilusr.iroshell.features;
     exports ilusr.iroshell.main;
+    exports ilusr.iroshell.menus;
     exports ilusr.iroshell.persistence;
     exports ilusr.iroshell.services;
     exports ilusr.iroshell.statusbar;
