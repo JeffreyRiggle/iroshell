@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -91,13 +92,32 @@ public class DockTab extends Tab implements Initializable, ICloseable, ISelectab
 	
 	@Override
 	public void close() {
-		System.out.println("final close");
-		if (tabPaneProperty().get() == null) {
-			System.out.println("Tab pane is null");
-			return;
+		LogRunner.logger().info(String.format("Attempting to close panel %s.", model.id()));
+		Event canClose = new Event(this, this, Tab.TAB_CLOSE_REQUEST_EVENT);
+		Event.fireEvent(this, canClose);
+
+		// Pulled from open jdk behavior.
+		if (!canClose.isConsumed()) {
+			TabPane pane = this.getTabPane();
+
+			if (pane == null) {
+				LogRunner.logger().info(String.format("Unable to find tabPane not closing tab %s", model.id()));
+				return;
+			}
+
+			int index = pane.getTabs().indexOf(this);
+
+			if (index != -1) {
+				pane.getTabs().remove(index);
+			}
+
+			if (this.getOnClosed() != null) {
+				Event.fireEvent(this, new Event(Tab.CLOSED_EVENT));
+			}
+
+		} else {
+			LogRunner.logger().info(String.format("Close event was consumed not closing tab %s", model.id()));
 		}
-		
-		Event.fireEvent(this, new Event(Tab.TAB_CLOSE_REQUEST_EVENT));
 	}
 	
 	private void setupDragAndDrop() {
