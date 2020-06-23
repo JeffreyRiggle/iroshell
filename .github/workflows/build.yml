@@ -26,3 +26,6 @@ jobs:
 
             - name: Build with Maven
               run: xvfb-run mvn test
+
+            - name: Publish
+              run: xvfb-run mvn deploy -Drevision="${GITHUB_RUN_NUMBER}"
