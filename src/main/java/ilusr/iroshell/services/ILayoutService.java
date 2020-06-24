@@ -105,16 +105,16 @@ public interface ILayoutService {
 	 * 
 	 * @return A @see MDIPersistence object representing the state of the document area.
 	 * @throws IllegalStateException This will throw an IllegalStateException when the application is not in {@link DocumentType#MDI}
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	MDIPersistence getMDIPersistenceModel() throws IllegalStateException, TransformerConfigurationException, ParserConfigurationException;
 	/**
 	 * 
 	 * @return A @see SDIPersistence object representing the state of the document area.
 	 * @throws IllegalStateException This will throw an IllegalStateException when the application is not in {@link DocumentType#SDI}
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	SDIPersistence getSDIPersistenceModel() throws IllegalStateException, TransformerConfigurationException, ParserConfigurationException;
 	/**

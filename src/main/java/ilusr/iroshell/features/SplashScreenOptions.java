@@ -40,7 +40,7 @@ public class SplashScreenOptions {
 	
 	/**
 	 * 
-	 * @param imageLocation A path to an image.
+	 * @param image An image to show in the background.
 	 */
 	public void backgroundImage(Image image) {
 		backgroundImage = image;

@@ -24,8 +24,8 @@ public class TabPanelPersistence extends XmlConfigurationObject {
 	/**
 	 * 
 	 * @param config A @see XmlConfigurationObject to restore.
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public TabPanelPersistence(XmlConfigurationObject config) throws TransformerConfigurationException, ParserConfigurationException {
 		this();
@@ -34,8 +34,8 @@ public class TabPanelPersistence extends XmlConfigurationObject {
 	
 	/**
 	 * 
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public TabPanelPersistence() throws TransformerConfigurationException, ParserConfigurationException {
 		super(TAB_PANEL_NODE);

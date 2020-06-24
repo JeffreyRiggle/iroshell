@@ -22,6 +22,8 @@ public interface IStyleContainerService extends IDispose{
 	 * @param id The name for the style.
 	 * @param css A @see File containing css to use.
 	 * @param type The @see RegistrationType that lets the service know how to handle conflicting styles.
+	 * @throws IllegalArgumentException Throws a illegal argument exception.
+	 * @throws IOException Throws a io exception when file cannot be read.
 	 */
 	void register(String id, File css, RegistrationType type) throws IllegalArgumentException, IOException;
 	

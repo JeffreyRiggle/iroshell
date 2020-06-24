@@ -30,8 +30,8 @@ public class DockAreaPersistence extends XmlConfigurationObject {
 	/**
 	 * 
 	 * @param config A @see XmlConfigurationObject to restore.
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public DockAreaPersistence(XmlConfigurationObject config) throws TransformerConfigurationException, ParserConfigurationException {
 		this();
@@ -40,8 +40,8 @@ public class DockAreaPersistence extends XmlConfigurationObject {
 	
 	/**
 	 * 
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public DockAreaPersistence() throws TransformerConfigurationException, ParserConfigurationException {
 		super(DOCK_AREA);

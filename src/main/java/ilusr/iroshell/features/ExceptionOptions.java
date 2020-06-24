@@ -45,7 +45,7 @@ public class ExceptionOptions {
 	
 	/**
 	 * 
-	 * @param provider @see ErrorDialogProvider used to create error dialogs.
+	 * @param provider A @see ErrorDialogProvider used to create error dialogs.
 	 */
 	public void errorDialogCreator(ErrorDialogProvider provider) {
 		this.provider = provider;
@@ -53,7 +53,7 @@ public class ExceptionOptions {
 	
 	/**
 	 * 
-	 * @return @see ErrorDialogProvider used to create error dialogs.
+	 * @return A @see ErrorDialogProvider used to create error dialogs.
 	 */
 	public ErrorDialogProvider errorProvider() {
 		return provider;

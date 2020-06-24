@@ -25,8 +25,8 @@ public class SDIPersistence extends XmlConfigurationObject {
 	/**
 	 * 
 	 * @param config A @see XmlConfigurationObject to restore.
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public SDIPersistence(XmlConfigurationObject config) throws TransformerConfigurationException, ParserConfigurationException {
 		this();
@@ -35,8 +35,8 @@ public class SDIPersistence extends XmlConfigurationObject {
 	
 	/**
 	 * 
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public SDIPersistence() throws TransformerConfigurationException, ParserConfigurationException {
 		super(SDI_NODE);

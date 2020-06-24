@@ -56,12 +56,12 @@ public interface IDialogService {
 	void displayModeless(Scene scene, String title);
 	/**
 	 * Displays a @see Parent as a modeless view.
-	 * @param stage The @see Parent to display.
+	 * @param root The @see Parent to display.
 	 */
 	void displayModeless(Parent root);
 	/**
 	 * Displays a @see Parent as a modeless view.
-	 * @param stage The @see Parent to display.
+	 * @param root The @see Parent to display.
 	 * @param title the title to display.
 	 */
 	void displayModeless(Parent root, String title);
