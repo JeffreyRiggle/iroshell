@@ -27,6 +27,9 @@ public class ToolBarService implements IToolBarService {
 	
 	/**
 	 * Creates a new ToolBarService.
+	 *
+	 * @param urlProvider The @see InternalURLProvider to use to provide styling.
+	 * @param styleService The @see StyleContinerService to handle styling.
 	 */
 	public ToolBarService(InternalURLProvider urlProvider, StyleContainerService styleService) {
 		this.urlProvider = urlProvider;

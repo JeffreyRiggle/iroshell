@@ -26,8 +26,8 @@ public class ToolBarPersistence extends XmlConfigurationObject {
 	/**
 	 * 
 	 * @param config A @see XmlConfigurationObject to restore.
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public ToolBarPersistence(XmlConfigurationObject config) throws TransformerConfigurationException, ParserConfigurationException {
 		this();
@@ -36,8 +36,8 @@ public class ToolBarPersistence extends XmlConfigurationObject {
 	
 	/**
 	 * 
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public ToolBarPersistence() throws TransformerConfigurationException, ParserConfigurationException {
 		super(TOOLBAR_PERSISTENCE_NODE);

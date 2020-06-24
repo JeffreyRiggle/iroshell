@@ -43,8 +43,8 @@ public class PersistenceService implements ApplicationClosingListener{
 	 * @param closingManager A @see IApplicationClosingManager.
 	 * @param toolBarService A @see PersistableToolBarService.
 	 * @param layoutService A @see ILayoutService.
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public PersistenceService(Stage shellStage, 
 							  String saveLocation, 

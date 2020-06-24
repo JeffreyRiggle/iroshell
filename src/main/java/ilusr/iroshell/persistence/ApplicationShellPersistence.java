@@ -26,8 +26,8 @@ public class ApplicationShellPersistence extends XmlConfigurationObject {
 	
 	/**
 	 * 
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public ApplicationShellPersistence() throws TransformerConfigurationException, ParserConfigurationException {
 		this(0,0,0,0);
@@ -39,8 +39,8 @@ public class ApplicationShellPersistence extends XmlConfigurationObject {
 	 * @param y The y location of the application.
 	 * @param width the width of the application.
 	 * @param height the height of the application.
-	 * @throws TransformerConfigurationException
-	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException Throws a transformer exception when xml cannot be transformed.
+	 * @throws ParserConfigurationException Throws a parser exception when xml is malformed.
 	 */
 	public ApplicationShellPersistence(double x, double y, double width, double height) throws TransformerConfigurationException, ParserConfigurationException {
 		super(APPLICATION_PERSISTENCE_NODE);
