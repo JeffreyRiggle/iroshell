@@ -1,6 +1,8 @@
 # iroshell
 This project is a universally usable JavaFX based application shell that has no business specific logic in it. This application shell provides the following features.
 
+![](./iroshellico.png)
+
 * **MDI (Multiple Document Interface)** - Provides a MDI interface that allows for the creation of tabs. These tabs will be hosted in a dock area and can be dragged and dropped to provide more complex placement of views.
 * **SDI (Single Document Interface)** - Provides a SDI interface that allows for a single selector and a document pane that changes based off of selector implementation.
 * **Error handling** - This application shell can handle unhandled errors and display an exception dialog to the user. There are also feature toggles that allow you to create your own special error handling logic.
