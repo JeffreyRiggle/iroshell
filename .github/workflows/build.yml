@@ -1,6 +1,6 @@
 name: Build
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
     build:
@@ -27,5 +27,36 @@ jobs:
             - name: Build with Maven
               run: xvfb-run mvn test
 
+            - name: Version Bump
+              if: startsWith(github.event.head_commit.message, 'Auto Version') != true
+              run: |
+                read_dom() {
+                  IFS=\>
+                  read -d \< ENTITY CONTENT
+                }
+
+                version=""
+
+                while read_dom; do
+                    if [[ $ENTITY = "version" ]]; then
+                        version=$CONTENT
+                        break
+                    fi
+                done < pom.xml
+
+                IFS='.' read -r -a sections <<< "$version"
+                patchVersion="${sections[2]}"
+                newPatchVersion="$(($patchVersion + 1))"
+                newVersion="${sections[0]}.${sections[1]}.${newPatchVersion}"
+                contents=`cat pom.xml`
+                echo "${contents//<version>$version</<version>$newVersion<}" > pom.xml
+                
+                git config --local user.email "$(git log --format='%ae' HEAD^!)"
+                git config --local user.name "$(git log --format='%an' HEAD^!)"
+                git add pom.xml
+                git commit -m "Auto Version"
+                git push
+
             - name: Publish
+              if: startsWith(github.event.head_commit.message, 'Auto Version') != true
               run: xvfb-run mvn deploy -Drevision="${GITHUB_RUN_NUMBER}"
