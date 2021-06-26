@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ilusr.iroshell</groupId>
   <artifactId>iroshell</artifactId>
-  <version>2.0.19</version>
+  <version>2.0.20</version>
   <name>IROShell</name>
   <description>Shell for UI applications</description>
   <dependencies>
