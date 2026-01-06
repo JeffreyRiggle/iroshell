@@ -1,5 +1,3 @@
-package test;
-
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -142,7 +140,7 @@ public class CSSInterperterTest {
 		CSSInterperter interperter = new CSSInterperter();
 		
 		try {
-			File cssFile = new File(getClass().getResource("testcssfile.css").toURI().getSchemeSpecificPart());
+			File cssFile = new File("src/test/java/test/testcssfile.css");
 			interperter.setCSS(cssFile);
 			
 			interperter.interpertCSS();
@@ -160,7 +158,7 @@ public class CSSInterperterTest {
 		boolean errored = false;
 		try {
 			CSSInterperter interperter = new CSSInterperter();
-			File cssFile = new File(CSSInterperterTest.class.getResource("teststyle.bad").toURI().getSchemeSpecificPart());
+			File cssFile = new File("src/test/java/test/teststyle.bad");
 		
 			interperter.setCSS(cssFile);
 		} catch (Exception e) {
@@ -173,7 +171,7 @@ public class CSSInterperterTest {
 	@Test
 	public void testCreateWithCSSFile() {
 		try {
-			File cssFile = new File(getClass().getResource("testcssfile.css").toURI().getSchemeSpecificPart());
+			File cssFile = new File("src/test/java/test/testcssfile.css");
 			CSSInterperter interperter = new CSSInterperter(cssFile);
 			
 			interperter.interpertCSS();
@@ -189,7 +187,7 @@ public class CSSInterperterTest {
 	@Test
 	public void testCreateWithInvalidCSSFile() {
 		boolean errored = false;
-		File cssFile = new File(getClass().getResource("teststyle.bad").toString());
+		File cssFile = new File("src/test/java/test/teststyle.bad");
 		
 		try {
 			@SuppressWarnings("unused")
